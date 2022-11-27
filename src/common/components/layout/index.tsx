@@ -9,10 +9,11 @@ interface IProps {
   children: ReactNode;
 }
 export const drawerWidth = 240;
+export const headerHeight = 60;
 
 function Layout(props: IProps) {
   const { children } = props;
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const { user } = useUser();
   const menuItems = user ? getMenuItems(user) : [];
@@ -27,7 +28,10 @@ function Layout(props: IProps) {
         }}
       >
         <Header open={open} setOpen={setOpen} />
-        <Box component="main" p={2}>
+        <Box
+          component="main"
+          sx={{ height: `calc(100vh - ${headerHeight}px)`, p: 2 }}
+        >
           {children}
         </Box>
       </Box>

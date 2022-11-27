@@ -5,4 +5,5 @@ export interface MenuItem {
   label: string;
   icon: any;
   allowedRoles?: Role[];
+  isPublic?: boolean;
 }

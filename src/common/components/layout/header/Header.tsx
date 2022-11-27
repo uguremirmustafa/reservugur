@@ -2,6 +2,7 @@ import { Menu } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
+import { headerHeight } from "..";
 import ProfileButton from "./ProfileButton";
 
 interface IProps {
@@ -21,7 +22,9 @@ function Header(props: IProps) {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        p: 2,
+        alignItems: "center",
+        px: 2,
+        height: headerHeight,
       }}
     >
       <IconButton color="primary" onClick={handleToggle}>

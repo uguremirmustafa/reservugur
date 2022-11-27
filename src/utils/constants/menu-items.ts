@@ -14,7 +14,7 @@ import { User } from "@prisma/client";
 import { MenuItem } from "types";
 
 const menuItems: MenuItem[] = [
-  { label: "Home", path: "/", icon: HomeOutlined },
+  { label: "Home", path: "/", icon: HomeOutlined, isPublic: true },
   {
     label: "My Shops",
     path: "/my-shops",
@@ -23,8 +23,12 @@ const menuItems: MenuItem[] = [
   },
 ];
 
-export const getMenuItems = (user: User) => {
-  return menuItems.filter((x) =>
-    x.allowedRoles ? x.allowedRoles.includes(user.role) : true
-  );
+export const getMenuItems = (user?: User | null) => {
+  if (!user) {
+    return menuItems.filter((x) => x.isPublic);
+  } else {
+    return menuItems.filter((x) =>
+      x.allowedRoles ? x.allowedRoles.includes(user.role) : true
+    );
+  }
 };

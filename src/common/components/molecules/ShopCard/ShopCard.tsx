@@ -1,7 +1,13 @@
-import { EmailOutlined } from "@mui/icons-material";
+import {
+  ArrowForwardIosOutlined,
+  ArrowRightOutlined,
+  EmailOutlined,
+} from "@mui/icons-material";
 import {
   Avatar,
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   CardMedia,
@@ -10,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Address, Place, Prisma, User } from "@prisma/client";
+import NextLink from "next/link";
 import React from "react";
 
 export type Shop = Place & {
@@ -51,6 +58,19 @@ const ShopCard = (props: IProps) => {
             : "This shop has no reservation currently!"}
         </Typography>
       </CardContent>
+      <CardActions disableSpacing>
+        {/* <IconButton>
+          <ArrowRightOutlined />
+        </IconButton> */}
+        <NextLink href={`/my-shops/${shop.id}`}>
+          <Button
+            sx={{ marginLeft: "auto" }}
+            endIcon={<ArrowForwardIosOutlined />}
+          >
+            Go to shop
+          </Button>
+        </NextLink>
+      </CardActions>
     </Card>
   );
 };

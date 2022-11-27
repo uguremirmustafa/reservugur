@@ -8,6 +8,7 @@ import Layout from "../common/components/layout";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "components/wrappers/theme-wrapper";
 import { UserProvider } from "components/wrappers/user-wrapper";
+import RouteGuard from "components/wrappers/route-guard/RouteGuard";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,14 +16,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <UserProvider>
-        <ThemeProvider>
-          <CssBaseline />
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ThemeProvider>
-      </UserProvider>
+      <ThemeProvider>
+        <CssBaseline />
+        <UserProvider>
+          <RouteGuard>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </RouteGuard>
+        </UserProvider>
+      </ThemeProvider>
     </SessionProvider>
   );
 };

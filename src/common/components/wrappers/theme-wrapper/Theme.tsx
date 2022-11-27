@@ -63,6 +63,7 @@ const themeWithoutPalette: Omit<ThemeOptions, "palette"> = {
       styleOverrides: {
         root: {
           borderRadius: 8,
+          fontWeight: 500,
         },
       },
     },
@@ -85,10 +86,28 @@ const themeWithoutPalette: Omit<ThemeOptions, "palette"> = {
         },
       },
     },
+    MuiTypography: {
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === "subtitle1" && {
+            color: grey["500"],
+          }),
+        }),
+      },
+    },
   },
   typography: {
+    fontFamily: "Ubuntu",
+    h1: {
+      fontSize: 32,
+      fontWeight: 700,
+    },
     h2: {
       fontSize: 24,
+      fontWeight: 700,
+    },
+    subtitle1: {
+      color: grey[300],
     },
   },
 };

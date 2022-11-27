@@ -1,4 +1,5 @@
 import { Grid } from "@mui/material";
+import PageTitle from "components/atoms/page-title/PageTitle";
 import ShopCard from "components/molecules/ShopCard/ShopCard";
 import type { NextPage } from "next";
 import { trpc } from "utils/trpc";
@@ -13,15 +14,19 @@ const ShopsPage: NextPage = () => {
   }
 
   return (
-    <Grid container>
-      {shops?.map((shop) => {
-        return (
-          <Grid item sm={12} md={6} lg={4}>
-            <ShopCard shop={shop} />
-          </Grid>
-        );
-      })}
-    </Grid>
+    <>
+      <PageTitle>My Shops</PageTitle>
+
+      <Grid container>
+        {shops?.map((shop) => {
+          return (
+            <Grid key={shop.id} item sm={12} md={6} lg={4}>
+              <ShopCard shop={shop} />
+            </Grid>
+          );
+        })}
+      </Grid>
+    </>
   );
 };
 

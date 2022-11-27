@@ -53,41 +53,13 @@ export function ProfileButton() {
         open={open}
         onClose={handleClose}
         onClick={handleClose}
-        MenuListProps={{ sx: { p: 0 } }}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            minWidth: 200,
-            overflow: "visible",
-            filter: "drop-shadow(0px -2px 10px rgba(0,0,0,0.2))",
-            mt: 1.5,
-            p: 1,
-            "& .MuiAvatar-root": {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            "&:before": {
-              content: '""',
-              display: "block",
-              position: "absolute",
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: "background.paper",
-              transform: "translateY(-50%) rotate(45deg)",
-              zIndex: 0,
-            },
-          },
-        }}
+        MenuListProps={{ sx: { p: 1 } }}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <NextLink href="/profile">
           <MenuItem>
-            {renderAvatar(sessionData?.user, 14)}{" "}
+            <ListItemIcon>{renderAvatar(sessionData?.user)}</ListItemIcon>
             <Typography variant="body1" color="primary">
               Profile
             </Typography>
