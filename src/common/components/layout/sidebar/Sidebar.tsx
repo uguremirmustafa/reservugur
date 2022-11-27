@@ -37,11 +37,11 @@ function Sidebar(props: IProps) {
       anchor="left"
       open={open}
     >
-      <List>
+      <List sx={{ p: 1 }}>
         {menuItems.map(({ icon, label, path }, index) => (
-          <ListItem key={path}>
+          <ListItem key={path} disablePadding>
             <Link href={path}>
-              <ListItemButton selected={router.asPath === path}>
+              <ListItemButton selected={router.asPath === path} sx={{ mb: 1 }}>
                 <ListItemIcon>{React.createElement(icon)}</ListItemIcon>
                 <ListItemText primary={label} />
               </ListItemButton>

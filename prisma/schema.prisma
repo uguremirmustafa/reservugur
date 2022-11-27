@@ -82,12 +82,12 @@ model Reservation {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   description String
-  bookedBy    User     @relation(fields: [userId], references: [id])
-  userId      String
+  owner       User     @relation(fields: [ownerId], references: [id])
+  ownerId     String
   place       Place    @relation(fields: [placeId], references: [id])
   placeId     String
 
-  @@index([userId, placeId])
+  @@index([ownerId, placeId])
 }
 
 model Address {

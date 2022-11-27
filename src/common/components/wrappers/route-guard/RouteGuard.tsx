@@ -11,55 +11,64 @@ interface IProps {
 const RouteGuard = (props: IProps) => {
   const { children } = props;
   const router = useRouter();
+
+  const { user, loading } = useUser();
   const [authorized, setAuthorized] = useState(false);
-  const { user } = useUser();
 
   useEffect(() => {
-    // on initial load - run auth check
-    authCheck(router.asPath);
+    if (!loading) {
+      console.log("use effect");
 
-    // on route change start - hide page content by setting authorized to false
-    const hideContent = () => setAuthorized(false);
-    router.events.on("routeChangeStart", hideContent);
+      // on initial load - run auth check
+      authCheck(router.asPath);
 
-    // on route change complete - run auth check
-    router.events.on("routeChangeComplete", authCheck);
+      // on route change start - hide page content by setting authorized to false
+      const hideContent = () => setAuthorized(false);
+      router.events.on("routeChangeStart", hideContent);
 
-    // unsubscribe from events in useEffect return function
-    return () => {
-      router.events.off("routeChangeStart", hideContent);
-      router.events.off("routeChangeComplete", authCheck);
-    };
+      // on route change complete - run auth check
+      router.events.on("routeChangeComplete", authCheck);
+      // unsubscribe from events in useEffect return function
+      return () => {
+        router.events.off("routeChangeStart", hideContent);
+        router.events.off("routeChangeComplete", authCheck);
+      };
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [user?.id, loading]);
 
   function authCheck(url: string) {
     // redirect to login page if accessing a private page and not logged in
 
     const path = url.split("?")[0] ?? "/";
-    // if (!user && !publicPaths.includes(path ?? "")) {
-    //   setAuthorized(false);
-    //   router.push("/");
-    // } else if(getMen){
-    //   setAuthorized(true);
-    // }
-    const publicPaths = getMenuItems().map((x) => x.path);
 
-    if (!user) {
+    const publicPaths = getMenuItems().map((x) => x.path);
+    const authorizedPathsForUser = getMenuItems(user).map((x) => x.path);
+
+    if (!user && !loading) {
       // public routes
       if (publicPaths.includes(path)) {
         setAuthorized(true);
       } else {
         setAuthorized(false);
+        console.log("redirecting because no user available");
         router.push("/");
       }
     } else {
-      const authorizedPathsForUser = getMenuItems(user).map((x) => x.path);
-      if (authorizedPathsForUser.includes(path)) {
+      // check for authorization and allow nested routes
+      let passed = false;
+      authorizedPathsForUser.forEach((r) => {
+        const regex = new RegExp(`${r}/*`);
+        if (regex.test(path)) {
+          passed = true;
+        }
+      });
+      if (passed) {
         setAuthorized(true);
       } else {
         setAuthorized(false);
+        console.log("redirecting because not authorized");
         router.push("/");
       }
     }

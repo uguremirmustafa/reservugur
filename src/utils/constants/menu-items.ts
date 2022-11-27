@@ -1,4 +1,5 @@
 import {
+  EventAvailableOutlined,
   Home,
   HomeOutlined,
   HomeRepairService,
@@ -20,6 +21,11 @@ const menuItems: MenuItem[] = [
     path: "/my-shops",
     icon: StoreOutlined,
     allowedRoles: ["ADMIN"],
+  },
+  {
+    label: "My Reservations",
+    path: "/my-reservations",
+    icon: EventAvailableOutlined,
   },
 ];
 

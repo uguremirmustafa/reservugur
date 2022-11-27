@@ -4,11 +4,13 @@ import { exampleRouter } from "./example";
 import { authRouter } from "./auth";
 import { placeRouter } from "./place";
 import { userRouter } from "./user";
+import { reservationRouter } from "./reservation";
 
 export const appRouter = router({
   example: exampleRouter,
   auth: authRouter,
   place: placeRouter,
+  reservation: reservationRouter,
   user: userRouter,
 });
 

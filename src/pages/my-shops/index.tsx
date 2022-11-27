@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import PageTitle from "components/atoms/page-title/PageTitle";
-import ShopCard from "components/molecules/ShopCard/ShopCard";
+import ShopCard from "components/molecules/shop-card/ShopCard";
 import type { NextPage } from "next";
 import { trpc } from "utils/trpc";
 

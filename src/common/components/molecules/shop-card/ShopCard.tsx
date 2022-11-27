@@ -51,7 +51,9 @@ const ShopCard = (props: IProps) => {
       />
       {/* <Divider /> */}
       <CardContent>
-        <Typography variant="h2">{shop.name}</Typography>
+        <Typography variant="h2" noWrap>
+          {shop.name}
+        </Typography>
         <Typography variant="subtitle1">
           {shop._count.Reservation
             ? `Reservation count: ${shop._count.Reservation}`

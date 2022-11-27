@@ -19,11 +19,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <ThemeProvider>
         <CssBaseline />
         <UserProvider>
-          <RouteGuard>
-            <Layout>
+          <Layout>
+            <RouteGuard>
               <Component {...pageProps} />
-            </Layout>
-          </RouteGuard>
+            </RouteGuard>
+          </Layout>
         </UserProvider>
       </ThemeProvider>
     </SessionProvider>
