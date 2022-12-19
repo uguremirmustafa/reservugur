@@ -74,13 +74,7 @@ const RouteGuard = (props: IProps) => {
     }
   }
 
-  return authorized ? (
-    children
-  ) : (
-    <>
-      <FullPageSpinner />
-    </>
-  );
+  return authorized ? children : <>{/* <FullPageSpinner /> */}</>;
 };
 
 export default RouteGuard;
