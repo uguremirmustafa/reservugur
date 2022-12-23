@@ -16,7 +16,6 @@ const ShopsPage: NextPage = () => {
   return (
     <>
       <PageTitle>My Shops</PageTitle>
-
       <Grid container>
         {shops?.map((shop) => {
           return (

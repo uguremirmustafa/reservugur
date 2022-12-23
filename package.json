@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "PORT=3333 next dev",
+    "dev": "set PORT=4000 && next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
